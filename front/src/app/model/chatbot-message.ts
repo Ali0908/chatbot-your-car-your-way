@@ -1,4 +1,4 @@
-export interface ChatMessage {
+export interface ChatbotMessage {
   sender: string;
   content: string;
   timestamp: Date;
