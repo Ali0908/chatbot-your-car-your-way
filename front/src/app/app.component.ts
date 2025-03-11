@@ -6,10 +6,11 @@ import { ChatbotMessage } from './model/chatbot-message';
 import { ChatbotService } from './services/chatbot.service';
 import { Panel } from 'primeng/panel';
 import { InputText } from 'primeng/inputtext';
+import {FormHomeComponent} from './form-home/form-home.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, DatePipe, ButtonDirective, Panel, ButtonLabel, InputText, Button],
+  imports: [CommonModule, FormsModule, DatePipe, ButtonDirective, Panel, ButtonLabel, InputText, Button, FormHomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

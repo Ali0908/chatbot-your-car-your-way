@@ -1,0 +1,6 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+  <div class="flex flex-column">
+    <input pInputText type="text" formControlName="name" placeholder="Saisissez votre nom"/>
+    <p-button  type="submit" label="Envoyer" severity="info" />
+  </div>
+</form>

@@ -1,13 +1,1 @@
-<!-- chat.component.html -->
-<p-panel header="Assistance en ligne">
-  <div class="chat-window" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
-    <div *ngFor="let msg of messages" class="chat-message">
-      <strong>{{ msg.sender }}:</strong> {{ msg.content }}
-      <span style="font-size: 0.8em; color: gray;">{{ msg.timestamp | date:'shortTime' }}</span>
-    </div>
-  </div>
-</p-panel>
-<div class="chat-input">
-  <input pInputText type="text" [(ngModel)]="newMessage" placeholder="Votre message..." style="flex: 1; margin-right: 5px;" />
-  <p-button label="Envoyer" (click)="send()"/>
-</div>
+<app-form-home></app-form-home>
