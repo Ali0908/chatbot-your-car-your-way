@@ -3,7 +3,7 @@ import { ChatbotMessage } from '../model/chatbot-message';
 import { Observable, Subject } from 'rxjs';
 import SockJS from 'sockjs-client';
 import { Client, IMessage } from '@stomp/stompjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -55,9 +55,12 @@ export class ChatbotService {
     return this.messageSubject.asObservable();
   }
 
-  sendName(name: string) {
-    return this.http.post<string>(`${this.pathService}`,
-      name,
-      {responseType: 'text' as 'json'});
+  sendName(user: { name: string }){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.pathService, user, { headers });
+  }
+
+  getUserConnected(){
+    return this.http.get(this.pathService);
   }
 }

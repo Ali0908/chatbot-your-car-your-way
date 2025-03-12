@@ -1,6 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
-  <div class="flex flex-column">
-    <input pInputText type="text" formControlName="name" placeholder="Saisissez votre nom"/>
-    <p-button  type="submit" label="Envoyer" severity="info" />
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-container">
+    <mat-form-field  appearance="outline">
+      <input matInput type="text" formControlName="name" placeholder="Saisissez votre nom">
+    </mat-form-field>
+    <button mat-flat-button type="submit">Envoyer</button>
   </div>
 </form>
+<!--<router-outlet></router-outlet>-->

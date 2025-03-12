@@ -13,7 +13,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void create(String name) {
-        com.example.back.model.User user = User.builder().name(name).build();
+        User user = User.builder().name(name).build();
         userRepository.save(user);
+    }
+
+    public User getLastUser() {
+        return userRepository.findTopByOrderByIdDesc();
     }
 }
