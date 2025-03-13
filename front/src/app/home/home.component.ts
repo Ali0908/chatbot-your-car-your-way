@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     })
     this.chatbotService.getMessages().subscribe((msg: ChatbotMessage) => {
       this.messages.push(msg);
+      console.log(this.messages) ;
     });
   }
 
