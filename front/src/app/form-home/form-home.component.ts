@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button'
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router, RouterOutlet} from '@angular/router';
+import {Router} from '@angular/router';
 import {ChatbotService} from '../services/chatbot.service';
 import {MatButton} from '@angular/material/button';
 import {MatFormField} from '@angular/material/form-field';
