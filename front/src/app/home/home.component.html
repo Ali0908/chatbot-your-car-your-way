@@ -1,19 +1,9 @@
 <!-- chat.component.html -->
   <div class="chat-window" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
-    <h2 class="chat-title">Welcome to Your Car your Way chatbot</h2>
+    <h2 class="chat-title">Bienvenue sur Your Car your Way chatbot</h2>
     <div *ngFor="let msg of messages" class="chat-message">
       <strong>{{ msg.sender }}:</strong> {{ msg.content }}
       <span style="font-size: 0.8em; color: gray;">{{ msg.timestamp | date:'shortTime' }}</span>
-      <div *ngIf="msg?.response?.length" class="chat-response">
-        <ng-container *ngFor=" let item of msg?.response">
-        <strong>Bot:</strong> {{ item?.answer }}
-        <span style="font-size: 0.8em; color: gray;">{{ msg?.timestamp | date:'shortTime' }}</span>
-        </ng-container>
-      </div>
-      <div *ngIf="!msg.response?.length">
-        <strong>Bot:</strong> Je n'ai pas de réponse à votre question, merci de contacter un conseiller au 01 02 03 04 05
-        <span style="font-size: 0.8em; color: gray;">{{ msg?.timestamp | date:'shortTime' }}</span>
-      </div>
     </div>
   </div>
 <div class="chat-input">

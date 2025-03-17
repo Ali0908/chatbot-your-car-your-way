@@ -12,6 +12,8 @@ export class ChatbotService {
   private stompClient: Client | undefined;
   private messageSubject = new Subject<ChatbotMessage>();
   private pathService = 'http://localhost:8080/api/user';
+  private baseUrl = 'http://localhost:8080/api/messages'; // Adjust the URL as needed
+
 
   constructor(private http: HttpClient) {
     this.initializeWebSocketConnection();
@@ -51,8 +53,8 @@ export class ChatbotService {
     });
   }
 
-  getMessages(): Observable<ChatbotMessage> {
-    return this.messageSubject.asObservable();
+  getMessages(): Observable<ChatbotMessage[]> {
+    return this.http.get<ChatbotMessage[]>(this.baseUrl);
   }
 
   sendName(user: { name: string }){

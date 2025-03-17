@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ChatbotMessage} from '../model/chatbot-message';
 import {ChatbotService} from '../services/chatbot.service';
 import {CommonModule, DatePipe} from '@angular/common';
@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {MatFormField} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
+
 @Component({
   selector: 'app-home',
   imports: [CommonModule, FormsModule, DatePipe, MatButton, MatFormField, MatInput, ReactiveFormsModule],
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   newMessage: string = '';
   username: string = ''; // This value could be dynamic
 
-  constructor(private chatbotService: ChatbotService) {
+  constructor(private chatbotService: ChatbotService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -28,10 +29,8 @@ export class HomeComponent implements OnInit {
         this.username = user?.name;
       }
     })
-    this.chatbotService.getMessages().subscribe((msg: ChatbotMessage) => {
-      this.messages.push(msg);
-      console.log(this.messages) ;
-    });
+    this.getMessages();
+
   }
 
   send(): void {
@@ -43,7 +42,16 @@ export class HomeComponent implements OnInit {
       };
       this.chatbotService.sendMessage(message);
       this.newMessage = '';
+      this.getMessages();
     }
+  }
 
+  getMessages() {
+    this.chatbotService.getMessages().subscribe({
+      next: (msg: ChatbotMessage[]) => {
+        this.messages = msg;
+      },
+      error: () => {}
+    });
   }
 }
