@@ -1,14 +1,14 @@
 <!-- chat.component.html -->
-  <div class="chat-window" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+<div class="chat-window" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
     <h2 class="chat-title">Bienvenue sur Your Car your Way chatbot</h2>
     <div *ngFor="let msg of messages" class="chat-message">
-      <strong>{{ msg.sender }}:</strong> {{ msg.content }}
-      <span style="font-size: 0.8em; color: gray;">{{ msg.timestamp | date:'shortTime' }}</span>
+        <strong>{{ msg.sender }}:</strong> {{ msg.content }}
+        <span style="font-size: 0.8em; color: gray;">{{ msg.timestamp | date:'shortTime' }}</span>
     </div>
-  </div>
+</div>
 <div class="chat-input">
-  <mat-form-field appearance="outline" class="chat-matInput">
-    <input matInput type="text" [(ngModel)]="newMessage" placeholder="Votre message..." >
-  </mat-form-field>
-  <button mat-flat-button (click)="send()">Envoyer</button>
+    <mat-form-field appearance="outline" class="chat-matInput">
+        <input matInput type="text" [(ngModel)]="newMessage" placeholder="Votre message..." >
+    </mat-form-field>
+    <button mat-flat-button (click)="send()">Envoyer</button>
 </div>

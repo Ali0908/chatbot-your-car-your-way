@@ -1,17 +1,13 @@
 package com.example.back.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter
+@Setter
 @Entity
 public class ChatMessage {
 
@@ -19,8 +15,12 @@ public class ChatMessage {
     @GeneratedValue
     private Long id;
 
-    private String sender;
     private String content;
     private LocalDateTime timestamp;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
 }
 

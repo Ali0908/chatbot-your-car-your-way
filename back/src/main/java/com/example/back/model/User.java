@@ -1,18 +1,13 @@
 package com.example.back.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,4 +17,8 @@ public class User {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<ChatMessage> messages;
 }

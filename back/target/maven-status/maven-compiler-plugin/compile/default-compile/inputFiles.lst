@@ -1,0 +1,11 @@
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/BackApplication.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/config/WebSocketConfig.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/controller/ChatController.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/controller/ChatMessageRestController.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/controller/UserController.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/model/ChatMessage.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/model/User.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/repository/ChatMessageRepository.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/repository/UserRepository.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/service/ChatService.java
+/home/user/Documents/oc/projects/P13/chatbot-your-car-your-way/back/src/main/java/com/example/back/service/UserService.java

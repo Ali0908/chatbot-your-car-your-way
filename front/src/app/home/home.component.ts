@@ -17,13 +17,12 @@ export class HomeComponent implements OnInit {
 
   messages: ChatbotMessage[] = [];
   newMessage: string = '';
-  username: string = ''; // This value could be dynamic
+  username: string = localStorage.getItem('username') || '';
 
   constructor(private chatbotService: ChatbotService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    // Subscribe to incoming messages
     this.chatbotService.getUserConnected().subscribe({
       next: (user: any) => {
         this.username = user?.name;
@@ -41,8 +40,8 @@ export class HomeComponent implements OnInit {
         timestamp: new Date()
       };
       this.chatbotService.sendMessage(message);
-      this.newMessage = '';
       this.getMessages();
+      this.newMessage = '';
     }
   }
 
@@ -50,6 +49,7 @@ export class HomeComponent implements OnInit {
     this.chatbotService.getMessages().subscribe({
       next: (msg: ChatbotMessage[]) => {
         this.messages = msg;
+        this.cd.detectChanges();
       },
       error: () => {}
     });
