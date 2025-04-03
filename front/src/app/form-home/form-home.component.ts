@@ -36,7 +36,14 @@ export class FormHomeComponent implements OnInit {
 
   onSubmit() {
   const modifiedUser =  this.form.value;
-  this.chatbotService.sendName(modifiedUser).subscribe();
+  this.chatbotService.sendName(modifiedUser).subscribe({
+    next: (response: any) => {
+      localStorage.setItem('username', response?.name);
+    },
+    error: (error) => {
+      console.error('Error connecting user:', error);
+    }
+  });
     this.router.navigate(['home']).then();
   }
 }

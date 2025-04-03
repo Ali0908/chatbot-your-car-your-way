@@ -17,13 +17,12 @@ export class HomeComponent implements OnInit {
 
   messages: ChatbotMessage[] = [];
   newMessage: string = '';
-  username: string= localStorage.getItem('username') || '';
+  username!: string;
 
   constructor(private chatbotService: ChatbotService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    // this.username = localStorage.getItem('username') || '';
     // this.chatbotService.getUserConnected().subscribe({
     //   next: (user: any) => {
     //     this.username = user?.name;
@@ -35,6 +34,8 @@ export class HomeComponent implements OnInit {
 
   send(): void {
     if (this.newMessage.trim()) {
+      this.getUsername();
+      this.username = localStorage.getItem('username') || '';
       const message: ChatbotMessage = {
         sender: this.username,
         content: this.newMessage,
@@ -61,5 +62,15 @@ export class HomeComponent implements OnInit {
       },
       error: () => {}
     });
+  }
+
+  private getUsername() {
+    let lastUser!: string;
+    this.chatbotService.getUserConnected().subscribe({
+      next: (user: any) => {
+        lastUser = user?.name;
+      }
+    });
+    this.username = lastUser ? lastUser : localStorage.getItem('username') || '';
   }
 }
