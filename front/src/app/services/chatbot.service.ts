@@ -10,7 +10,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class ChatbotService {
   private stompClient: Client | undefined;
-  private messageSubject = new Subject<ChatbotMessage>();
+  messageSubject = new Subject<any>();
   private pathService = 'http://localhost:8080/api/user';
   private baseUrl = 'http://localhost:8080/api/messages'; // Adjust the URL as needed
 
@@ -29,11 +29,13 @@ export class ChatbotService {
     });
 
     this.stompClient.onConnect = (frame) => {
-      console.log('Connected: ' + frame);
+      // console.log('Connected: ' + frame);
 
       // S'abonner au topic public pour recevoir des messages
       this.stompClient?.subscribe('/topic/public', (message: IMessage) => {
+        console.log('Received message body:', message.body); // Log the raw message body
         const chatMessage: ChatbotMessage = JSON.parse(message.body);
+        console.log('Parsed chatMessage:', chatMessage); // Log the parsed chatMessage
         this.messageSubject.next(chatMessage);
       });
     };
