@@ -1,6 +1,5 @@
 package com.example.back.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatMessageDto {
-
+public class ChatResponseDto {
     private Long id;
     private String content;
     private LocalDateTime timestamp;

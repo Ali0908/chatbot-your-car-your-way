@@ -39,11 +39,11 @@ export class FormHomeComponent implements OnInit {
   this.chatbotService.sendName(modifiedUser).subscribe({
     next: (response: any) => {
       localStorage.setItem('username', response?.name);
+      this.router.navigate(['home']).then();
     },
     error: (error) => {
       console.error('Error connecting user:', error);
     }
   });
-    this.router.navigate(['home']).then();
   }
 }

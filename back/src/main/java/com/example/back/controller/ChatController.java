@@ -2,6 +2,7 @@
 package com.example.back.controller;
 
 import com.example.back.dto.ChatMessageDto;
+import com.example.back.dto.ChatResponseDto;
 import com.example.back.model.ChatMessage;
 import com.example.back.service.ChatService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class ChatController {
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage(ChatMessageDto chatMessageDto) {
+    public ChatResponseDto sendMessage(ChatMessageDto chatMessageDto) {
         return chatService.save(chatMessageDto);
     }
 }

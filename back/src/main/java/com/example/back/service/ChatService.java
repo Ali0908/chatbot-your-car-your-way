@@ -2,6 +2,7 @@
 package com.example.back.service;
 
 import com.example.back.dto.ChatMessageDto;
+import com.example.back.dto.ChatResponseDto;
 import com.example.back.mapper.ChatMessageMapper;
 import com.example.back.model.ChatMessage;
 import com.example.back.model.User;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ChatService {
 
     private final ChatMessageRepository chatMessageRepository;
@@ -26,15 +28,15 @@ public class ChatService {
         this.userRepository = userRepository;
     }
 
-    @Transactional
-    public ChatMessage save(ChatMessageDto chatMessageDto) {
+    public ChatResponseDto save(ChatMessageDto chatMessageDto) {
         ChatMessage chatMessage = chatMessageMapper.toEntity(chatMessageDto);
         User user = userRepository.findByName(chatMessageDto.getSender());
         chatMessage.setUser(user);
-        return chatMessageRepository.save(chatMessage);
+        chatMessageRepository.save(chatMessage);
+        return chatMessageMapper.toDto(chatMessage);
     }
 
-    public List<ChatMessageDto> findAll() {
+    public List<ChatResponseDto> findAll() {
         return chatMessageRepository.findAll()
                 .stream()
                 .map(chatMessageMapper:: toDto)

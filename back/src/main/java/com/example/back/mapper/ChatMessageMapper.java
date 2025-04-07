@@ -1,5 +1,6 @@
 package com.example.back.mapper;
 
+import com.example.back.dto.ChatResponseDto;
 import com.example.back.model.ChatMessage;
 import com.example.back.dto.ChatMessageDto;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class ChatMessageMapper {
         return chatMessage;
     }
 
-    public ChatMessageDto toDto(ChatMessage chatMessage) {
-        return new ChatMessageDto(
+    public ChatResponseDto toDto(ChatMessage chatMessage) {
+        return new ChatResponseDto(
                 chatMessage.getId(),
                 chatMessage.getContent(),
                 chatMessage.getTimestamp(),

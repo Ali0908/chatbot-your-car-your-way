@@ -12,7 +12,10 @@ export class ChatbotService {
   private stompClient: Client | undefined;
   messageSubject = new Subject<any>();
   private pathService = 'http://localhost:8080/api/user';
-  private baseUrl = 'http://localhost:8080/api/messages'; // Adjust the URL as needed
+  private baseUrl = 'http://localhost:8080/api/messages';
+  private usersUrl = 'http://localhost:8080/api/users';
+  // private nextUser = 'http://localhost:8080/api/user/next';
+  // private previousUser = 'http://localhost:8080/api/user/previous';
 
 
   constructor(private http: HttpClient) {
@@ -33,9 +36,9 @@ export class ChatbotService {
 
       // S'abonner au topic public pour recevoir des messages
       this.stompClient?.subscribe('/topic/public', (message: IMessage) => {
-        console.log('Received message body:', message.body); // Log the raw message body
+        // console.log('Received message body:', message.body); // Log the raw message body
         const chatMessage: ChatbotMessage = JSON.parse(message.body);
-        console.log('Parsed chatMessage:', chatMessage); // Log the parsed chatMessage
+        // console.log('Parsed chatMessage:', chatMessage); // Log the parsed chatMessage
         this.messageSubject.next(chatMessage);
       });
     };
@@ -64,7 +67,20 @@ export class ChatbotService {
     return this.http.post(this.pathService, user, { headers });
   }
 
-  getUserConnected(){
-    return this.http.get(this.pathService);
+  getAllUsers(): Observable<any> {
+    return this.http.get(this.usersUrl);
   }
+
+  // getUserConnected(){
+  //   return this.http.get(this.pathService);
+  // }
+  //
+  // getNextUser(): Observable<any> {
+  //   return this.http.get<any>(this.nextUser);
+  // }
+  //
+  // getPreviousUser(): Observable<any> {
+  //       return this.http.get<any>(this.previousUser);
+  // }
+
 }
